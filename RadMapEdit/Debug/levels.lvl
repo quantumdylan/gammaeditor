@@ -1,0 +1,9 @@
+#Main level declaration
+
+[global]
+w = 22
+h = 15
+
+[levelone]
+start = 0
+map_id_end = 0

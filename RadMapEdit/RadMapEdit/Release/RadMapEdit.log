@@ -1,0 +1,16 @@
+﻿Build started 1/14/2014 10:19:25 PM.
+     1>Project "F:\Radiation\MapEditor\C++\RadMapEdit\RadMapEdit\RadMapEdit.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\VisualStudio\VC\bin\CL.exe /c /I"F:\allegro-5.0.10-msvc-11.0\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         C:\VisualStudio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Radiation\MapEditor\C++\RadMapEdit\Release\RadMapEdit.exe" /NOLOGO /LIBPATH:"F:\allegro-5.0.10-msvc-11.0\lib" "allegro-5.0.10-monolith-md.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Radiation\MapEditor\C++\RadMapEdit\Release\RadMapEdit.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Radiation\MapEditor\C++\RadMapEdit\Release\RadMapEdit.lib" /MACHINE:X86 /SAFESEH Release\main.obj
+         Generating code
+     1>f:\radiation\mapeditor\c++\radmapedit\radmapedit\main.cpp(201): warning C4715: 'init_engine' : not all control paths return a value
+         Finished generating code
+         RadMapEdit.vcxproj -> F:\Radiation\MapEditor\C++\RadMapEdit\Release\RadMapEdit.exe
+     1>Done Building Project "F:\Radiation\MapEditor\C++\RadMapEdit\RadMapEdit\RadMapEdit.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.47
