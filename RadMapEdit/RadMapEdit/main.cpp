@@ -21,7 +21,7 @@ int SCREEN_H = 480;
 enum MYKEYS {KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT, KEY_ENTER, KEY_ONE, KEY_TWO, KEY_THREE, KEY_FOUR, KEY_FIVE, KEY_SIX, KEY_SEVEN, KEY_EIGHT, KEY_NINE, KEY_ZERO};
 float pointer_x, pointer_y, enterheld, numheld;
 string curnum;
-int font_size = 42;
+int font_size = 32;
 bool canenter = true;
 
 ALLEGRO_DISPLAY *display = NULL; //Basic display pointer
@@ -113,6 +113,7 @@ void apply_main_config(){
 	SCREEN_W = atoi(al_get_config_value(config_ld, "SCREENRES", "w"));
 	SCREEN_H = atoi(al_get_config_value(config_ld, "SCREENRES", "h"));
 	FPS = atoi(al_get_config_value(config_ld, "FPS", "f"));
+	font_size = atoi(al_get_config_value(config_ld, "FONTSIZE", "size"));
 
 	fprintf(stdout, "Screen width: ");
 	fprintf(stdout, al_get_config_value(config_ld, "SCREENRES", "w"));
