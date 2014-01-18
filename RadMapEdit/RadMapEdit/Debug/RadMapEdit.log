@@ -1,14 +1,5 @@
-﻿Build started 1/16/2014 12:56:08 PM.
-     1>Project "C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\RadMapEdit\RadMapEdit.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\VisualStudio\VC\bin\CL.exe /c /I"F:\allegro-5.0.10-msvc-11.0\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-     1>c:\users\admin\documents\github\gammaeditor\radmapedit\radmapedit\main.cpp(202): warning C4715: 'init_engine' : not all control paths return a value
-       Link:
-         C:\VisualStudio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\Debug\RadMapEdit.exe" /INCREMENTAL /NOLOGO /LIBPATH:"F:\allegro-5.0.10-msvc-11.0\lib" "allegro-5.0.10-monolith-md-debug.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\Debug\RadMapEdit.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\Debug\RadMapEdit.lib" /MACHINE:X86 Debug\main.obj
-         RadMapEdit.vcxproj -> C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\Debug\RadMapEdit.exe
-     1>Done Building Project "C:\Users\Admin\Documents\GitHub\gammaeditor\RadMapEdit\RadMapEdit\RadMapEdit.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:05.19
+﻿  main.cpp
+c:\users\dpackard\documents\github\gammaeditor\radmapedit\radmapedit\main.cpp(117): warning C4018: '<' : signed/unsigned mismatch
+c:\users\dpackard\documents\github\gammaeditor\radmapedit\radmapedit\main.cpp(129): warning C4018: '<' : signed/unsigned mismatch
+c:\users\dpackard\documents\github\gammaeditor\radmapedit\radmapedit\main.cpp(258): warning C4715: 'init_engine' : not all control paths return a value
+  RadMapEdit.vcxproj -> C:\Users\dpackard\Documents\GitHub\gammaeditor\RadMapEdit\Debug\RadMapEdit.exe

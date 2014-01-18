@@ -21,6 +21,7 @@ int SCREEN_H = 480;
 enum MYKEYS {KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT, KEY_ENTER, KEY_ONE, KEY_TWO, KEY_THREE, KEY_FOUR, KEY_FIVE, KEY_SIX, KEY_SEVEN, KEY_EIGHT, KEY_NINE, KEY_ZERO};
 float pointer_x, pointer_y, enterheld, numheld;
 string curnum;
+stringstream convert;
 int font_size = 32;
 bool canenter = true;
 
@@ -39,6 +40,7 @@ struct tile{ //Basic tile declaration
 
 struct tile_map{ //Basic map declaration
 	string raw_data; //Really, this fucking vector thing is being a bitch. I'm not down with dynamic
+	vector<int> formatted_data;
 	int id; //Map ref-id. Used to determine which floor is being displayed
 	string title; //Title of the map being displayed
 };
@@ -62,7 +64,7 @@ void save(){
 
 void populate_map(){
 	for(int i = 0; i < tile_w*tile_h; i++){
-		mapparoo.raw_data.push_back('0');
+		mapparoo.formatted_data.push_back(0);
 	}
 }
 
@@ -78,35 +80,89 @@ ALLEGRO_COLOR color_tiles(int x, int y){
 }
 
 void draw_map(){
+	int temp_i;
+	string temp_s;
 	for(int x=0; x < tile_w; x++){
 		for(int y=0; y < tile_h; y++){
-			curnum = mapparoo.raw_data.at((y*tile_w)+x);
-			al_draw_text(font, color_tiles(x, y), x*font_size + (font_size/2), y*font_size,ALLEGRO_ALIGN_CENTRE, curnum.c_str());; //Minor fix here. Originally reliant on a variable, now actually reliant on a constant
+			convert.clear();
+			convert.str(""); //Clear the conversion buffer
+			temp_i = mapparoo.formatted_data.at((y*tile_w)+x); //Grab our lovely vector thingy
+			convert << temp_i; //Convert it to string
+			temp_s = convert.str();
+
+			//curnum = mapparoo.raw_data.at((y*tile_w)+x);
+			al_draw_text(font, color_tiles(x, y), x*font_size + (font_size/2), y*font_size,ALLEGRO_ALIGN_CENTRE, temp_s.c_str());; //Minor fix here. Originally reliant on a variable, now actually reliant on a constant
 		}
 	}
+}
+
+string make_str(int input){
+	string temp_s;
+	convert.clear();
+	convert.str("");
+	convert << input;
+	temp_s = convert.str();
+
+	return temp_s;
+}
+
+void make_raw(){
+	string temp_s;
+	string convert_temp;
+	int temp_i;
+
+	for(int i = 0; i < tile_w*tile_h; i++){
+		temp_s.push_back('-'); //Start delimit
+		temp_i = mapparoo.formatted_data.at(i);
+		for(int j = 0; j < make_str(temp_i).length(); j++){
+			convert_temp = make_str(temp_i);
+			temp_s.push_back(convert_temp.at(j)); //Data (in non-ASCII format)
+		}
+		//Okay, how do we do this? I'm thinking that maybe we try and get the distance between the delimiters,
+		//then loop with that and add each digit individually. Because obviously, this isn't going to work.
+		//Okay, so let's try it where we determine the length by calling make_str(), and then adding each digit individually.
+		temp_s.push_back('+'); //End delimit
+	}
+
+	cout << temp_s;
+	cout << "\n";
+	for(int i = 0; i < temp_s.length(); i++){ //Set our map string equal to the temporary string (hopefully no memory access errors this time)
+		mapparoo.raw_data.push_back(temp_s.at(i));
+	}
+	cout << mapparoo.raw_data;
+	cout << "\n";
 }
 
 void edit_entry(int x, int y){
 	cout << "Enter entry: ";
 	
-	char input;
-	cin >> input;
+	string input;
+	int temp_i;
 
-	mapparoo.raw_data[y*(tile_w) + x] = input;
+	cin >> input;
+	temp_i = atoi(input.c_str());
+
+	mapparoo.formatted_data[y*tile_w + x] = temp_i;
 
 	cout << "\n";
-	cout << input;
+	cout << mapparoo.formatted_data.at((y*tile_w)+x);
 
 	canenter = true;
 }
 
+/*
 void edit(char id){
 	string temp;
-	temp.push_back(id);	
+	int temp_i;
+	temp.push_back(id);
 
-	mapparoo.raw_data[round(pointer_y)*tile_w + round(pointer_x)] = temp[0];
-}
+	cin >> temp;
+	temp_i = atoi(temp.c_str());
 
+	mapparoo.formatted_data.push_back(temp_i);
+
+	//mapparoo.raw_data[round(pointer_y)*tile_w + round(pointer_x)] = temp[0];
+}*/
 
 void apply_main_config(){
 	//Setting the screen resolution as per the configuration file
@@ -276,7 +332,7 @@ int main(int argc, char **argv)
 			   edit_entry(round(pointer_x), round(pointer_y));
 		   }
 		   if(numheld >= 1){
-				if(key[KEY_ZERO])
+				/*if(key[KEY_ZERO])
 					edit('0');
 				if(key[KEY_ONE])
 					edit('1');
@@ -296,7 +352,7 @@ int main(int argc, char **argv)
 					edit('8');
 				if(key[KEY_NINE])
 					edit('9');
-			   numheld = 0;
+			   numheld = 0;*/
 		   }
 
 		   redraw = true;
@@ -319,6 +375,7 @@ int main(int argc, char **argv)
 		   case ALLEGRO_KEY_8 : key[KEY_EIGHT] = true; break;
 		   case ALLEGRO_KEY_9 : key[KEY_NINE] = true; break;
 		   case ALLEGRO_KEY_S : save(); break;
+		   case ALLEGRO_KEY_E : make_raw(); break;
 		   default : ;
 		   }
 	   }
